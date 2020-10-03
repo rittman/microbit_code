@@ -48,7 +48,7 @@ def on_received_string(receivedString):
         global press
         press = envirobit.get_pressure()
 
-        radio.send_string(str(temp) + "press")
+        radio.send_string(str(press) + "Pa")
 
     if receivedString == "sun":
         global ld

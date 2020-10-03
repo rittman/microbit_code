@@ -46,7 +46,7 @@ radio.onReceivedString(function on_received_string(receivedString: string) {
     if (receivedString == "press") {
         
         press = envirobit.getPressure()
-        radio.sendString("" + temp + "press")
+        radio.sendString("" + press + "Pa")
     }
     
     if (receivedString == "sun") {
