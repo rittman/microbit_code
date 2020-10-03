@@ -36,18 +36,27 @@ radio.set_group(1)
 def on_received_string(receivedString):
     if receivedString == "degrees":
         global temp
+        temp = envirobit.get_temperature()
         radio.send_string(str(temp) + "degrees")
 
     if receivedString == "humid":
         global humid
-    radio.send_string(str(humid) + "percent")
+        humid = envirobit.get_temperature()
+        radio.send_string(str(humid) + "percent")
 
     if receivedString == "press":
         global press
-    radio.send_string(str(temp) + "press")
+        press = envirobit.get_pressure()
+
+        radio.send_string(str(temp) + "press")
 
     if receivedString == "sun":
         global ld
-    radio.send_string(ld)
+        if envirobit.get_light() < 50:
+            ld = "DARK"
+            basic.show_string(ld)
+        else:
+            ld = "LIGHT"
+            basic.show_string(ld)
 
 radio.on_received_string(on_received_string)

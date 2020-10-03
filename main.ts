@@ -33,22 +33,32 @@ radio.setGroup(1)
 radio.onReceivedString(function on_received_string(receivedString: string) {
     if (receivedString == "degrees") {
         
+        temp = envirobit.getTemperature()
         radio.sendString("" + temp + "degrees")
     }
     
     if (receivedString == "humid") {
         
+        humid = envirobit.getTemperature()
+        radio.sendString("" + humid + "percent")
     }
     
-    radio.sendString("" + humid + "percent")
     if (receivedString == "press") {
         
+        press = envirobit.getPressure()
+        radio.sendString("" + temp + "press")
     }
     
-    radio.sendString("" + temp + "press")
     if (receivedString == "sun") {
+        
+        if (envirobit.getLight() < 50) {
+            ld = "DARK"
+            basic.showString(ld)
+        } else {
+            ld = "LIGHT"
+            basic.showString(ld)
+        }
         
     }
     
-    radio.sendString(ld)
 })
