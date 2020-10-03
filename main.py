@@ -5,10 +5,13 @@ def on_button_pressed_a():
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def light_dark():
+    global ld
     if envirobit.get_light() < 50:
-        basic.show_string("DARK")
+        ld = "DARK"
+        basic.show_string(ld)
     else:
-        basic.show_string("LIGHT")
+        ld = "LIGHT"
+        basic.show_string(ld)
 envirobit.on_clap(light_dark)
 
 def on_button_pressed_ab():
@@ -26,12 +29,25 @@ input.on_button_pressed(Button.B, on_button_pressed_b)
 press = 0
 humid = 0
 temp = 0
+ld = ""
 envirobit.set_clap_sensitivity(10)
 radio.set_group(1)
 
 def on_received_string(receivedString):
     if receivedString == "degrees":
         global temp
-        radio.send_number(temp)
+        radio.send_string(str(temp) + "degrees")
+
+    if receivedString == "humid":
+        global humid
+    radio.send_string(str(humid) + "percent")
+
+    if receivedString == "press":
+        global press
+    radio.send_string(str(temp) + "press")
+
+    if receivedString == "sun":
+        global ld
+    radio.send_string(ld)
 
 radio.on_received_string(on_received_string)
