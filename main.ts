@@ -27,6 +27,9 @@ let temp = 0
 envirobit.setClapSensitivity(10)
 radio.setGroup(1)
 radio.onReceivedString(function on_received_string(receivedString: string) {
+    if (receivedString == "degrees") {
+        
+        radio.sendNumber(temp)
+    }
     
-    radio.sendNumber(temp)
 })

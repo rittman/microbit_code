@@ -31,9 +31,7 @@ radio.set_group(1)
 
 def on_received_string(receivedString):
     if receivedString == "degrees":
-
-        
-    global temp
-    radio.send_number(temp)
+        global temp
+        radio.send_number(temp)
 
 radio.on_received_string(on_received_string)
