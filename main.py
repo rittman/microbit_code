@@ -53,9 +53,8 @@ def on_received_string(receivedString):
         global ld
         if envirobit.get_light() < 50:
             ld = "DARK"
-            basic.show_string(ld)
         else:
             ld = "LIGHT"
-            basic.show_string(ld)
+        radio.send_string(ld)
 
 radio.on_received_string(on_received_string)

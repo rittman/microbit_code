@@ -53,12 +53,11 @@ radio.onReceivedString(function on_received_string(receivedString: string) {
         
         if (envirobit.getLight() < 50) {
             ld = "DARK"
-            basic.showString(ld)
         } else {
             ld = "LIGHT"
-            basic.showString(ld)
         }
         
+        radio.sendString(ld)
     }
     
 })
