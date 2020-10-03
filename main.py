@@ -4,15 +4,15 @@ def on_button_pressed_a():
     basic.show_string("" + str(temp) + "degrees")
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
-def light_dark():
-    global ld
-    if envirobit.get_light() < 50:
-        ld = "DARK"
-        basic.show_string(ld)
-    else:
-        ld = "LIGHT"
-        basic.show_string(ld)
-envirobit.on_clap(light_dark)
+#def light_dark():
+#    global ld
+#    if envirobit.get_light() < 50:
+#        ld = "DARK"
+#        basic.show_string(ld)
+#    else:
+#        ld = "LIGHT"
+#        basic.show_string(ld)
+#envirobit.on_clap(light_dark)
 
 def on_button_pressed_ab():
     global humid
@@ -41,7 +41,7 @@ def on_received_string(receivedString):
 
     if receivedString == "humid":
         global humid
-        humid = envirobit.get_temperature()
+        humid = envirobit.get_humidity()
         radio.send_string(str(humid) + "percent")
 
     if receivedString == "press":

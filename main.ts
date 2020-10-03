@@ -3,17 +3,15 @@ input.onButtonPressed(Button.A, function on_button_pressed_a() {
     temp = envirobit.getTemperature()
     basic.showString("" + ("" + temp) + "degrees")
 })
-envirobit.onClap(function light_dark() {
-    
-    if (envirobit.getLight() < 50) {
-        ld = "DARK"
-        basic.showString(ld)
-    } else {
-        ld = "LIGHT"
-        basic.showString(ld)
-    }
-    
-})
+// def light_dark():
+//     global ld
+//     if envirobit.get_light() < 50:
+//         ld = "DARK"
+//         basic.show_string(ld)
+//     else:
+//         ld = "LIGHT"
+//         basic.show_string(ld)
+// envirobit.on_clap(light_dark)
 input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
     
     humid = envirobit.getTemperature()
@@ -39,7 +37,7 @@ radio.onReceivedString(function on_received_string(receivedString: string) {
     
     if (receivedString == "humid") {
         
-        humid = envirobit.getTemperature()
+        humid = envirobit.getHumidity()
         radio.sendString("" + humid + "percent")
     }
     
