@@ -1,21 +1,32 @@
-input.onButtonPressed(Button.A, function button_a() {
-    let temp = envirobit.getTemperature()
-    basic.showString("" + temp + "degrees")
+input.onButtonPressed(Button.A, function on_button_pressed_a() {
+    
+    temp = envirobit.getTemperature()
+    basic.showString("" + ("" + temp) + "degrees")
 })
-input.onButtonPressed(Button.B, function button_b() {
-    let press = envirobit.getPressure()
-    basic.showString("" + press + "Pa")
-})
-input.onButtonPressed(Button.AB, function button_ab() {
-    let humid = envirobit.getTemperature()
-    basic.showString("" + humid + "percent")
-})
-envirobit.setClapSensitivity(10)
-envirobit.onClap(function on_clap() {
+envirobit.onClap(function light_dark() {
     if (envirobit.getLight() < 50) {
         basic.showString("DARK")
     } else {
         basic.showString("LIGHT")
     }
     
+})
+input.onButtonPressed(Button.AB, function on_button_pressed_ab() {
+    
+    humid = envirobit.getTemperature()
+    basic.showString("" + ("" + humid) + "percent")
+})
+input.onButtonPressed(Button.B, function on_button_pressed_b() {
+    
+    press = envirobit.getPressure()
+    basic.showString("" + ("" + press) + "Pa")
+})
+let press = 0
+let humid = 0
+let temp = 0
+envirobit.setClapSensitivity(10)
+radio.setGroup(1)
+radio.onReceivedString(function on_received_string(receivedString: string) {
+    
+    radio.sendNumber(temp)
 })
